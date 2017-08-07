@@ -45,7 +45,7 @@ function inpolygon{T<:Real}(x::T, y::T, xv::Vector{T}, yv::Vector{T})
 		end
 	    j = i;
   	end
-	# Matlab definition include both in polygon and on polygon points.
+	# Matlab/Octave definition includes both in polygon and on polygon points.
   	return (inside .| on);
 end
 # Version for vector input
