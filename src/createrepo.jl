@@ -1,7 +1,8 @@
 """
 	createrepo(name,path,args...)
 
-Create (module) repository/folder and fill it with default files   
+Create and initialize git repository, plus
+fill it with default files (module, test, readme, etc.).
 
 **Input**
 * name: repository name (string without .jl extension)
@@ -25,7 +26,7 @@ function createrepo(name::String,path::String="",args...)
 	mkdir(repofolder*"/test")
 	# Create main files
 	open(repofolder*"/src/"*name*".jl","w") do fid
-		@printf(fid,"module %s\n\nend",name);
+		@printf(fid,"module %s\n\nend #module",name);
 	end
 	# Create (optional) function files
 	for i in args
@@ -35,6 +36,22 @@ function createrepo(name::String,path::String="",args...)
 	end
 	# Create test file
 	open(repofolder*"/test/runtests.jl","w") do fid
-		@printf(fid,"using %s\nusing Base.test\n",name);
+		@printf(fid,"using %s\nusing Base.Test\n",name);
 	end
+	# Create readme file
+	open(repofolder*"/readme.md","w") do fid
+		@printf(fid,"%s\n",name)
+		for i = 1:length(name)
+			@printf(fid,"=");
+		end
+		@printf(fid,"\n");
+	end
+	# Initialize git
+	curpath = pwd();
+	cd(repofolder)
+	run(`git init`)
+	run(`git add readme.md`)
+	run(`git add "src/*.jl"`)
+	run(`git add "test/*.jl"`)
+	cd(curpath)
 end

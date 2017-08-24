@@ -3,6 +3,7 @@ module MMpkg
 	include("createrepo.jl");
 	include("docversion.jl");
 	include("inpolygon.jl");
+	include("meshgrid.jl");
 	# Export selected functions
-	export createrepo, docversion, inpolygon
+	export createrepo, docversion, inpolygon, meshgrid, mesh2vec
 end
