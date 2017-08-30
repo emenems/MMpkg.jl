@@ -1,4 +1,4 @@
-Except for the functions listed below, the MMpkg package is licensed under the MIT license:
+If not stated otherwise (see below), the MMpkg package is licensed under MIT license:
 >Copyright 2017, Michal Mikolaj
 >
 >Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -114,7 +114,7 @@ The inpolygon.jl function is licensed under GPL-2 License:
 >Gnomovision version 69, Copyright (C) year name of author
 >Gnomovision comes with ABSOLUTELY NO WARRANTY; for details
 >type 'show w'.  This is free software, and you are welcome
->to redistribute it under certain conditions; type 'show c' 
+>to redistribute it under certain conditions; type 'show c'
 >for details.
 >The hypothetical commands 'show w' and 'show c' should show the appropriate parts of the General Public License. Of course, the commands you use may be called something other than 'show w' and 'show c'; they could even be mouse-clicks or menu items--whatever suits your program.
 >
@@ -122,11 +122,11 @@ The inpolygon.jl function is licensed under GPL-2 License:
 >
 >Yoyodyne, Inc., hereby disclaims all copyright
 >interest in the program 'Gnomovision'
->(which makes passes at compilers) written 
+>(which makes passes at compilers) written
 >by James Hacker.
 >
 >signature of Ty Coon, 1 April 1989
 >Ty Coon, President of Vice
 >
->This General Public License does not permit incorporating your program into proprietary programs. If your program is a subroutine library, you may consider it more useful to permit linking proprietary applications with the library. 
+>This General Public License does not permit incorporating your program into proprietary programs. If your program is a subroutine library, you may consider it more useful to permit linking proprietary applications with the library.
 >If this is what you want to do, use the GNU Lesser General Public License instead of this License.
