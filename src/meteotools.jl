@@ -2,7 +2,7 @@
 # global atmospheric model outputs
 # Constants: meteorological
 const e_const = 287.0597/461.5250; # ratio Rd/Rv, see https://www.ecmwf.int/sites/default/files/elibrary/2015/9211-part-iv-physical-processes.pdf
-
+const g_const = 9.80665; # gravity constant for geopotential -> height conversion
 """
     meteo2density(pres,temp,humi)
 Convert meteo parameters to [density](https://en.wikipedia.org/wiki/Density_of_air)
@@ -174,4 +174,22 @@ function rh2abs(humid::Float64,temp::Float64)
          ((273.15+temp)*100*0.08314);
     # Convert to kg/m^3
     return out/1000;
+end
+
+"""
+    geopot2height(phis)
+Convert geopotential (m^2.s^-2) to height (m)
+
+**Input**
+* phis: geopotential in m^2.s^-2
+
+**Output**
+* physical height in m
+
+"""
+function geopot2height(phis::Float64;g=g_const)
+	return phis/g
+end
+function geopot2height(phis::Float32;g=g_const)
+	return geopot2height(convert(Float64,phis),g=g)
 end

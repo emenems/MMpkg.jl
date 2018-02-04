@@ -29,7 +29,6 @@ yi = [10 10 10 10; 20 20 20 20; 30 30 30 30; 40 40 40 40];
 x,y = mesh2vec(xi,yi);
 @test x[end] == 4
 @test y[1] == 10
-println("End");
 
 #######################################
 ######### METEOTOOLS.JL ###############
@@ -59,6 +58,9 @@ println("End");
 # sh2rh:
 # https://www.rotronic.com/en/humidity_measurement-feuchtemessung-mesure_de_l_humidite/humidity-calculator-feuchterechner-mr
 @test round(sh2rh(0.00606,23+273.15,101325.)) == 35
+
+# geopot2height
+@test geopot2height(1000.0,g=9.80665) ≈ 1000.0/9.80665
 
 #######################################
 ########### GEOTOOLS.JL ###############
@@ -92,3 +94,5 @@ x,y,z = elip2xyz(0.0,90.0,height=10.0,a=6378137.,b=6356752.31414036)
 # elip2sphere
 @test elip2sphere(0.0,90.0,height=10.0,a=6378137.,b=6356752.31414036) ≈ 90.
 @test elip2sphere(10.0,0.0,height=1000.0,a=6378137.,b=6356752.31414036) ≈ 0.
+
+println("End of test")
