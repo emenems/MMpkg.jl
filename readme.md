@@ -6,9 +6,6 @@ This repository contains various (auxiliary) functions that are not part of othe
 * No additional or external module is needed
 
 ## Functions
-#### Use Matlab-like meshgrid
-* `meshgrid`: create Matlab-like meshgrid
-* `mesh2vec`: convet meshgrid to vector
 
 #### Points indide polygon
 * `inpolygon`: find points inside a polygon
@@ -18,6 +15,8 @@ This repository contains various (auxiliary) functions that are not part of othe
 * `elip2sphere`: convert longitude, latitude and height on a ellipsoid to spherical coordinates
 * `lonlat2psi`: compute spherical distance between points on ellipsoid
 * `replacesphere`: compute radius of a replacement sphere (to ellipsoid)
+* `deg2decimal`: convert degrees, minutes and seconds to decimal degrees
+* `decimal2deg`: convert decimal degrees to degrees, minutes and seconds
 
 #### Create repository and document used packages
 * `createrepo`: initialize a git repository and fill it with default files (module, test, readme, etc.)

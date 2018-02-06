@@ -129,3 +129,58 @@ function replacesphere(a::Float64=a_elip,b::Float64=b_elip)
 	e = eccentricity1(a,b);
 	sqrt(1 + 2/3*e^2 + 3/5*e^4 + 4/7*e^6 + 5/9*e^8 + 6/11*e^10 + 7/13*e^12)*b;
 end
+
+
+"""
+	deg2decimal(d,m,s)
+Convert degrees, minutes and seconds to decimal degrees
+
+**Input**
+* d: degrees
+* m: minutes
+* s: seconds
+
+**Output**
+* decimal degrees (not radians!)
+
+**Example**
+```
+degd = deg2decimal(90,30,10)
+```
+"""
+function deg2decimal(d,m,s)
+	mult = 1;
+	# check sign
+	if d < 0
+		mult = -1;
+	end
+	return mult*(abs(d) + abs(m)/60 + abs(s)/3600)
+end
+
+"""
+	decimal2deg(degd)
+Convert degrees, minutes and seconds to decimal degrees
+
+**Input**
+* decimal degrees (not radians!)
+
+**Output**
+* tuple containing (degrees,minutes,second)
+
+**Example**
+```
+deg = decimal2deg(90.5)
+```
+"""
+function decimal2deg(degd)
+	if degd < 0
+		d = ceil(degd);
+		m = floor((d - degd)*60)
+		s = ((d - degd)*60 - m)*60
+	else
+		d = floor(degd);
+		m = floor((degd - d)*60)
+		s = ((degd - d)*60 - m)*60
+	end
+	return (d,m,s)
+end

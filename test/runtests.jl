@@ -1,6 +1,5 @@
 
 include("../src/inpolygon.jl")
-include("../src/meshgrid.jl")
 include("../src/geotools.jl")
 include("../src/meteotools.jl")
 using Base.Test
@@ -16,19 +15,6 @@ o = inpolygon(x,y,xv,yv)
 @test o[2] == true;
 @test o[end] == false;
 
-# meshgrid
-x = [1,2,3,4];
-y = [10,20,30,40];
-xi,yi = meshgrid(x,y)
-@test xi[2,3] == 3.0
-@test yi[2,3] == 20.0
-
-# mesh2vec
-xi = [1 2 3 4; 1 2 3 4; 1 2 3 4; 1 2 3 4];
-yi = [10 10 10 10; 20 20 20 20; 30 30 30 30; 40 40 40 40];
-x,y = mesh2vec(xi,yi);
-@test x[end] == 4
-@test y[1] == 10
 
 #######################################
 ######### METEOTOOLS.JL ###############
@@ -94,5 +80,16 @@ x,y,z = elip2xyz(0.0,90.0,height=10.0,a=6378137.,b=6356752.31414036)
 # elip2sphere
 @test elip2sphere(0.0,90.0,height=10.0,a=6378137.,b=6356752.31414036) ≈ 90.
 @test elip2sphere(10.0,0.0,height=1000.0,a=6378137.,b=6356752.31414036) ≈ 0.
+
+# deg2decimal
+@test deg2decimal(90,30,0) == 90.5
+@test deg2decimal(-90,15,0) == -90.25
+
+# decimal2deg
+@test decimal2deg(90.5) == (90,30,0)
+t = decimal2deg(-90.25);
+@test t[1] == -90
+@test t[2] == 15
+@test t[3] ≈ 0
 
 println("End of test")
