@@ -1,19 +1,8 @@
 
-include("../src/inpolygon.jl")
 include("../src/geotools.jl")
 include("../src/meteotools.jl")
+include("../src/variousfces.jl")
 using Base.Test
-
-# inpolygon
-xv = [0,10,10,0.];
-yv = [0,0,10,10.];
-# Vertex, edge, outside
-x = [0.,10.,3];
-y = [0.,9.9,-0.1];
-o = inpolygon(x,y,xv,yv)
-@test o[1] == true;
-@test o[2] == true;
-@test o[end] == false;
 
 
 #######################################
@@ -47,6 +36,23 @@ o = inpolygon(x,y,xv,yv)
 
 # geopot2height
 @test geopot2height(1000.0,g=9.80665) ≈ 1000.0/9.80665
+
+#######################################
+########### VARIOUSFCES.JL ############
+#######################################
+# cut2equal
+y1,y2 = collect(1.:1.:10),collect(33.:1.:42)
+x1,x2 = copy(y1),collect(3.:1:12);
+x,y1c,y2c = cut2equal(x1,y1,x2,y2);
+@test x == collect(3.:1.:10)
+@test y1c == collect(3.:1.:10)
+@test y2c == collect(33.:1.:40)
+# Remove also NaNs
+y1[5] = NaN
+x,y1c,y2c = cut2equal(x1,y1,x2,y2,remnan=true);
+@test x == [3.,4,6,7,8,9,10]
+@test y1c == [3.,4,6,7,8,9,10]
+@test y2c == [33.,34,36,37,38,39,40]
 
 #######################################
 ########### GEOTOOLS.JL ###############

@@ -3,12 +3,9 @@ MMpkg
 This repository contains various (auxiliary) functions that are not part of other Modules
 
 ### Dependency
-* No additional or external module is needed
+* some functions may require DataFrames or PyPlot package
 
 ## Functions
-
-#### Points indide polygon
-* `inpolygon`: find points inside a polygon
 
 #### Simple conversion of ellipsoidal and spherical coordinates
 * `elip2xyz`: convert longitude, latitude and height to X,Y,Z (Cartesian) coordinates
@@ -31,3 +28,7 @@ This repository contains various (auxiliary) functions that are not part of othe
 * `sh2rh`: convert specific humidity to relative humidity
 * `satwatpres`: compute saturation water vapor pressure (over water)
 * `geopot2height`: convert geopotential to altitude
+
+#### Various/other functions
+* `cut2equal`: cut two pairs of x & y vectors to equal x vector
+* `homogendatatest`: test two input vectors for homogeneity

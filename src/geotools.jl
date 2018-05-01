@@ -130,7 +130,6 @@ function replacesphere(a::Float64=a_elip,b::Float64=b_elip)
 	sqrt(1 + 2/3*e^2 + 3/5*e^4 + 4/7*e^6 + 5/9*e^8 + 6/11*e^10 + 7/13*e^12)*b;
 end
 
-
 """
 	deg2decimal(d,m,s)
 Convert degrees, minutes and seconds to decimal degrees
