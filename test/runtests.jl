@@ -1,8 +1,10 @@
 
+using Base.Test, DataFrames
+
 include("../src/geotools.jl")
 include("../src/meteotools.jl")
 include("../src/variousfces.jl")
-using Base.Test
+include("../src/spectralanalysis.jl")
 
 
 #######################################
@@ -98,4 +100,14 @@ t = decimal2deg(-90.25);
 @test t[2] == 15
 @test t[3] ≈ 0
 
+# spectral analysis =  just compute no check
+t = @data(collect(1.:1:100.));
+signal = 1.0.*cos(2*pi./10.*t) +
+     2.0.*cos(2*pi./20.*t) +
+     3.0.*cos(2*pi./30.*t) +
+     randn(length(t));
+out = spectralAnalysis(signal,resol=1.,fftlength=1000)# win=DSP.hanning
+# plot results (>nyquist frequency=2 days)
+#plot(out[:period],out[:amplitude])
+#xlim([2,100])
 println("End of test")

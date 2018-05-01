@@ -32,3 +32,5 @@ This repository contains various (auxiliary) functions that are not part of othe
 #### Various/other functions
 * `cut2equal`: cut two pairs of x & y vectors to equal x vector
 * `homogendatatest`: test two input vectors for homogeneity
+* `getWUdata`: download [WUnderground](wunderground.com/history/) historical weather data
+* `spectralAnalysis`: carry out simple spectral analysis

@@ -10,6 +10,7 @@ module MMpkg
 	include("datatest.jl");
 	include("wunderground.jl");
 	include("plotdata.jl");
+	include("spectralanalysis.jl");
 	# Export selected functions
 	export createrepo, docversion # createrepo + docversion
 	export lonlat2psi, elip2xyz, elip2sphere, replacesphere, decimal2deg, deg2decimal # geotools
@@ -18,4 +19,5 @@ module MMpkg
 	export homogendatatest
 	export getWUdata
 	export plotyy
+	export spectralAnalysis
 end
