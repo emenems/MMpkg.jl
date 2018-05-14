@@ -3,7 +3,7 @@ MMpkg
 This repository contains various (auxiliary) functions that are not part of other Modules
 
 ### Dependency
-* some functions may require DataFrames or PyPlot package
+* some functions may require DataFrames (>=0.11.0) or PyPlot package
 
 ## Functions
 
