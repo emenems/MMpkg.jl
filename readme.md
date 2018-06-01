@@ -3,7 +3,8 @@ MMpkg
 This repository contains various (auxiliary) functions that are not part of other Modules
 
 ### Dependency
-* some functions may require DataFrames (>=0.11.0) or PyPlot package
+* some functions require DataFrames (>=0.11.0), PyPlot and RCall packages
+* In addition, R/raster library is required in `rfces.jl`
 
 ## Functions
 
@@ -28,6 +29,12 @@ This repository contains various (auxiliary) functions that are not part of othe
 * `sh2rh`: convert specific humidity to relative humidity
 * `satwatpres`: compute saturation water vapor pressure (over water)
 * `geopot2height`: convert geopotential to altitude
+
+#### Plot
+* `plotyy`: plot data with 2 Y axes (comparable to Matlab [plotyy](https://www.mathworks.com/help/matlab/ref/plotyy.html) function)
+
+#### Function exploiting R libraries
+* `shpRpolygon`: read SHP polygon exploiting R/raster/shapefile function 
 
 #### Various/other functions
 * `cut2equal`: cut two pairs of x & y vectors to equal x vector

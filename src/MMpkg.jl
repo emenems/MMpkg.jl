@@ -1,6 +1,7 @@
 module MMpkg
 	using PyPlot
 	using DataFrames
+	using RCall
 	# Load functions defined in separate files
 	include("createrepo.jl");
 	include("docversion.jl");
@@ -11,6 +12,7 @@ module MMpkg
 	include("wunderground.jl");
 	include("plotdata.jl");
 	include("spectralanalysis.jl");
+	include("rfces.jl");
 	# Export selected functions
 	export createrepo, docversion # createrepo + docversion
 	export lonlat2psi, elip2xyz, elip2sphere, replacesphere, decimal2deg, deg2decimal # geotools
@@ -20,4 +22,5 @@ module MMpkg
 	export getWUdata
 	export plotyy
 	export spectralAnalysis
+	export Polyg, shpRpolygon
 end

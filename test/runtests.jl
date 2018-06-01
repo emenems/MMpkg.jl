@@ -1,11 +1,5 @@
 
-using Base.Test, DataFrames
-
-include("../src/geotools.jl")
-include("../src/meteotools.jl")
-include("../src/variousfces.jl")
-include("../src/spectralanalysis.jl")
-
+using Base.Test, MMpkg
 
 #######################################
 ######### METEOTOOLS.JL ###############
@@ -67,11 +61,11 @@ psi = rad2deg(psi);
 @test psi ≈ 1.0
 
 # Eccentricity: https://de.mathworks.com/help/map/ref/referenceellipsoid-class.html
-e1 = eccentricity1(6378137.,6356752.31414036);
+e1 = MMpkg.eccentricity1(6378137.,6356752.31414036);
 @test round(e1*1e+13) == round(0.0818191910428158*1e+13)
 
 # Radius of replacement sphere (https://de.mathworks.com/help/map/ref/referenceellipsoid-class.html )
-re = replacesphere(6378137.,6356752.31414036)
+re = MMpkg.replacesphere(6378137.,6356752.31414036)
 rr = sqrt(510065621718491/(4*pi))
 @test rr ≈ re
 
@@ -110,4 +104,13 @@ out = spectralAnalysis(signal,resol=1.,fftlength=1000)# win=DSP.hanning
 # plot results (>nyquist frequency=2 days)
 #plot(out[:period],out[:amplitude])
 #xlim([2,100])
+
+## rfces
+polygtest1 = shpRpolygon(joinpath("test/input","polygon.shp"));
+@test isapprox(polygtest1[1].area,215229.265625)
+#for i in keys(polygtest1)
+#   plot(polygtest1[i].x,polygtest1[i].y)
+#end
+polygtest2 = shpRpolygon(joinpath("test/input","pline.shp"));
+@test isnan(polygtest2[1].area)
 println("End of test")

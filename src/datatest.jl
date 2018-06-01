@@ -10,8 +10,8 @@ The procedure follows the FAO Irrigation and drainage paper 56,
 instructions at: http://www.fao.org/docrep/X0490E/x0490e0l.htm
 
 **Input**
-* data1: first data vector (DataArray)
-* data2: second data vector (DataArray)
+* data1: first data vector 
+* data2: second data vector 
 * time1: optional time vector corresponding to data1, if data1 and data2 do not overlap
 * time2: optional time vector corresponding to data2, if data1 and data2 do not overlap
 * fig_size: output figure size (default=(13,8))
@@ -27,12 +27,11 @@ homogendatatest(datain[:data1],datain[:data2],
 				time1=datain[:time],time2=timein)
 ```
 """
-function homogendatatest(data1::DataArray,data2::DataArray;
-                        time1=@data([]),time2=@data([]),
+function homogendatatest(data1,data2;time1=[],time2=[],
                         fig_size=(13,8));
     # set default values
     if length(time1) == 0 || length(time2) == 0
-        time1,time2 = @data(collect(0:1:length(data1))),@data(collect(0:1:length(data2)));
+        time1,time2 = collect(0:1:length(data1)),collect(0:1:length(data2));
     end
     # Prepare data
     timeuse,data1use,data2use = MMpkg.cut2equal(time1,data1,time2,data2,remnan=true);
@@ -61,7 +60,7 @@ end
 """
 auxiliary function for computation of a regression model
 """
-function homogendatatest_reg(data1::DataArray,data2::DataArray)
+function homogendatatest_reg(data1,data2)
     # Compute standard deviations, means, covariance and correlation
     x_mean,y_mean = mean(data2),mean(data1)
     x_std,y_std  = std(data2),std(data1)
