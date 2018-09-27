@@ -2,6 +2,12 @@ module MMpkg
 	using PyPlot
 	using DataFrames
 	using RCall
+	using Dates 
+	using Statistics
+	using Printf
+	import FFTW
+	import Pkg
+	import InteractiveUtils
 	# Load functions defined in separate files
 	include("createrepo.jl");
 	include("docversion.jl");

@@ -24,8 +24,8 @@ psi = lonlat2psi(1.,0.,0.,0.);
 """
 function lonlat2psi(lon1::Float64,lat1::Float64,lon2::Float64,lat2::Float64;a::Float64=a_elip,b::Float64=b_elip)
     # Transform to XYZ
-    x1,y1,z1 = elip2xyz(lon1,lat1,height=0.,a=a,b=b);
-    x2,y2,z2 = elip2xyz(lon2,lat2,height=0.,a=a,b=b);
+    x1,y1,z1 = elip2xyz(lon1,lat1,height=0.0,a=a,b=b);
+    x2,y2,z2 = elip2xyz(lon2,lat2,height=0.0,a=a,b=b);
     # Transform to sphere (longitude stays the same)
     lat1s = atan(z1/sqrt(x1^2+y1^2));
     lat2s = atan(z2/sqrt(x2^2+y2^2));
@@ -54,10 +54,10 @@ x,y,z = elip2xyz(0.0,0.0,height=10.0,a=6378137.,b=6356752.31414036)
 """
 function elip2xyz(lon::Float64,lat::Float64;height::Float64=0.0,a::Float64=a_elip,b::Float64=b_elip)
     e = eccentricity1(a,b);
-    n = a/sqrt(1.-e^2*sind(lat)^2);
+    n = a/sqrt(1.0-e^2*sind(lat)^2);
     x = (n+height)*cosd(lat)*cosd(lon);
     y = (n+height)*cosd(lat)*sind(lon);
-    z = (n*(1.-e^2)+height)*sind(lat);
+    z = (n*(1.0-e^2)+height)*sind(lat);
     return x,y,z
 end
 

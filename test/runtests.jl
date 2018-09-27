@@ -1,14 +1,14 @@
 
-using Base.Test, MMpkg
+using Test, MMpkg, Dates
 
 #######################################
 ######### METEOTOOLS.JL ###############
 #######################################
 # rh2abs:  http://planetcalc.com/2167/
-@test round(rh2abs(60.,25.+273.15)*1000) == 14
+@test round(rh2abs(60.,25.0.+273.15)*1000) == 14
 
 # rh2dew: See http://dpcalc.org for results
-@test round(rh2dew(75.,-1.+273.15)) == round(-5+273.15)
+@test round(rh2dew(75.,-1.0.+273.15)) == round(-5+273.15)
 
 # satwatpres: https://en.wikipedia.org/wiki/Vapour_pressure_of_water
 @test round(satwatpres(20+273.15)/10) == 234
@@ -96,9 +96,9 @@ t = decimal2deg(-90.25);
 
 # spectral analysis =  just compute no check
 t = collect(1.:1:100.);
-signal = 1.0.*cos.(2*pi./10.*t) +
-     2.0.*cos.(2*pi./20.*t) +
-     3.0.*cos.(2*pi./30.*t) +
+signal = 1.0.*cos.(2*pi./10.0.*t) +
+     2.0.*cos.(2*pi./20.0.*t) +
+     3.0.*cos.(2*pi./30.0.*t) +
      randn(length(t));
 out = spectralAnalysis(signal,resol=1.,fftlength=1000)# win=DSP.hanning
 # plot results (>nyquist frequency=2 days)

@@ -25,7 +25,7 @@ out1 = getWUdata(siteid,timevec,url=wu_url,downto=datafold,keepfile=true)
 out2 = getWUdata(siteid,timevec,url="",downto=datafold)
 ```
 """
-function getWUdata(id::String,timein::StepRange{DateTime,Base.Dates.Day};
+function getWUdata(id::String,timein::StepRange{DateTime,Dates.Day};
 					url::String="https://www.wunderground.com/history/airport/",
 					downto::String="",keepfile::Bool=true)::DataFrames.DataFrame
 	# declare parameters to be downloaded/read (set keywords in the HTML file)
@@ -48,6 +48,8 @@ function getWUdata(id::String,timein::StepRange{DateTime,Base.Dates.Day};
 				dataout[j][i] = readWUdata(downfile,downpar[j]);
 			end
 			(!keepfile && !isempty(url)) ? rm(downfile) : nothing
+		catch 
+			nothing;
 		end
 	end
 	return dataout
@@ -60,7 +62,7 @@ function readWUdata(downfile::String,keyword::String)::Float64
 	open(downfile,"r") do fid
 		# find line with the keyword
 		row = readline(fid);
-		while !contains(row,"<span>"*keyword*"</span>")
+		while !contains("<span>"*keyword*"</span>",row)
 			row = readline(fid);
 			eof(fid) ? break : nothing;
 		end
@@ -75,7 +77,7 @@ function readWUdata(downfile::String,keyword::String)::Float64
 			readline(fid);# next line after is a dummy
 		end
 		mm = fid |> readline |> x-> match(re,x);
-		out = mm !== nothing ? parse(Float64,mm.match) : NaN
+		out = mm !== nothing ? Base.parse(Float64,mm.match) : NaN
 	end
 	return out
 end

@@ -3,7 +3,7 @@
 """
 Polyg(on) type: contains ID, x/longitue, y/latitude and covered surface area
 """
-type Polyg
+mutable struct Polyg
    objectid::Int
    x::Vector{Float64}
    y::Vector{Float64}
@@ -68,7 +68,7 @@ Use Try/catch to convert what whould be string to integer
 """
 function id2int(i::Int,o)
     try
-        return parse(Int,o)
+        return Base.parse(Int,o)
     catch
         return i-1
     end

@@ -27,14 +27,18 @@ function docversion()
 	versioninfo()
 	@printf("Installed packages (may not be used, see using/import command in code):\n");
 	Pkg.status()
-	@printf("\nGlobal variables (whos()):\n")
-	whos()
+	@printf("\n");
+	@printf("Global variables (whos()):\n")
+	InteractiveUtils.varinfo()
 end
 function docversion(fid::IOStream)
-	@printf(fid,"Automatic Julia version and package status report:\n\n");
+	@printf(fid,"Automatic Julia version and package status report:\n");
+	@printf(fid,"\n");
 	versioninfo(fid);
-	@printf(fid,"\nInstalled packages (may not be used, see using/import command in code):\n");
+	@printf(fid,"\n");
+	@printf(fid,"Installed packages (may not be used, see using/import command in code):\n");
 	Pkg.status(fid);
-	@printf(fid,"\nGlobal variables (whos()):\n")
-	whos(fid);
+	@printf(fid,"\n");
+	@printf(fid,"Global variables (whos()):\n")
+	InteractiveUtils.varinfo(fid);
 end
