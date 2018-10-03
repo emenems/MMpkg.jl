@@ -1,5 +1,5 @@
 
-using Test, MMpkg, Dates
+using Test, MMpkg, Dates, DataFrames
 
 #######################################
 ######### METEOTOOLS.JL ###############
@@ -113,3 +113,14 @@ polygtest1 = shpRpolygon(joinpath(dirname(@__DIR__),"test","input","polygon.shp"
 #end
 polygtest2 = shpRpolygon(joinpath(dirname(@__DIR__),"test","input","pline.shp"));
 @test isnan(polygtest2[1].area)
+
+##
+a = DataFrame(c = [1,1,1,2,2,2], y = collect(1.0:1.0:6));
+b = groupby(a,:c)
+b1 = sub2df(a,b[1])
+@test typeof(b1) == DataFrame
+@test b1[:c] == [1,1,1];
+@test b1[:y] == [1.0,2.0,3.0]
+b2 = sub2df(a,b[2])
+@test b2[:c] == [2,2,2];
+@test b2[:y] == [4.0,5.0,6.0]

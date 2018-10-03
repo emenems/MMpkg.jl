@@ -28,3 +28,29 @@ function cut2equal(x1,y1,x2,y2;remnan=false)
 	end
     return x,y1c,y2c
 end
+
+"""
+Convert SubDataFrame to DataFrame.
+Source/Inspired by: Bogumił Kamiński @ https://stackoverflow.com/questions/52493187/turn-a-subdataframe-into-a-dataframe
+
+**Input**
+* `df`: original dataframe used for grouping
+* `sub`: subdataframe to be converted to output DataFrame
+
+**Example**
+```
+a = DataFrame(c = [1,1,1,2,2,2], y = collect(1.0:1.0:6));
+b = groupby(a,:c)
+b1 = sub2df(a,b[1])
+@test typeof(b1) == DataFrame
+@test b1[:c] == [1,1,1];
+@test b1[:y] == [1.0,2.0,3.0]
+b2 = sub2df(a,b[2])
+@test b2[:c] == [2,2,2];
+@test b2[:y] == [4.0,5.0,6.0]
+```
+"""
+function sub2df(df::DataFrame,sub::SubDataFrame)::DataFrame
+    x = DataFrames.rows(sub);
+    DataFrame(AbstractVector[view(df[i], x) for i in 1:ncol(sub)],names(sub))
+end

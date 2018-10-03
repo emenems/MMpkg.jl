@@ -2,7 +2,7 @@ module MMpkg
 	using PyPlot
 	using DataFrames
 	using RCall
-	using Dates 
+	using Dates
 	using Statistics
 	using Printf
 	import FFTW
@@ -29,4 +29,5 @@ module MMpkg
 	export plotyy
 	export spectralAnalysis
 	export Polyg, shpRpolygon
+	export sub2df
 end

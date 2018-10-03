@@ -41,3 +41,4 @@ This repository contains various (auxiliary) functions that are not part of othe
 * `homogendatatest`: test two input vectors for homogeneity
 * `getWUdata`: download [WUnderground](wunderground.com/history/) historical weather data
 * `spectralAnalysis`: carry out simple spectral analysis
+* `sub2df`: convert SubDataFrame to DataFrame
