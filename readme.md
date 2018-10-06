@@ -7,8 +7,8 @@ MMpkg
 This repository contains various (auxiliary) functions that are not part of other Modules
 
 ### Dependency
-* some functions require DataFrames (>=0.11.0), PyPlot and RCall packages
-* In addition, R/raster library is required in `rfces.jl`
+* R/raster library is required in `rfces.jl`.
+  * this requires libraries such as `gdal` & `netcdf` (not tested in build!) 
 
 ## Functions
 
@@ -45,5 +45,3 @@ This repository contains various (auxiliary) functions that are not part of othe
 
 ## Usage
 * Check the function help for instructions and example usage, e.g., `?elip2xyz`
-
-> Check the `REQUIRE` file for dependencies

@@ -104,13 +104,13 @@ using MMpkg
     #xlim([2,100])
 
     ## rfces
-    polygtest1 = shpRpolygon(joinpath(dirname(@__DIR__),"test","input","polygon.shp"));
-    @test isapprox(polygtest1[1].area,215229.265625)
+    #polygtest1 = shpRpolygon(joinpath(dirname(@__DIR__),"test","input","polygon.shp"));
+    #@test isapprox(polygtest1[1].area,215229.265625)
     #for i in keys(polygtest1)
     #   plot(polygtest1[i].x,polygtest1[i].y)
     #end
-    polygtest2 = shpRpolygon(joinpath(dirname(@__DIR__),"test","input","pline.shp"));
-    @test isnan(polygtest2[1].area)
+    #polygtest2 = shpRpolygon(joinpath(dirname(@__DIR__),"test","input","pline.shp"));
+    #@test isnan(polygtest2[1].area)
 
     ##
     a = DataFrame(c = [1,1,1,2,2,2], y = collect(1.0:1.0:6));
