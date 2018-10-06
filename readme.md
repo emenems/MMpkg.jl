@@ -1,5 +1,9 @@
 MMpkg
 ========
+[![Build Status](https://travis-ci.org/emenems/MMpkg.jl.svg?branch=master)](https://travis-ci.org/emenems/MMpkg.jl)
+[![codecov](https://codecov.io/gh/emenems/MMpkg.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/emenems/MMpkg.jl)
+[![Coverage Status](https://coveralls.io/repos/github/emenems/MMpkg.jl/badge.svg?branch=master)](https://coveralls.io/github/emenems/MMpkg.jl?branch=master)
+
 This repository contains various (auxiliary) functions that are not part of other Modules
 
 ### Dependency
@@ -16,10 +20,6 @@ This repository contains various (auxiliary) functions that are not part of othe
 * `deg2decimal`: convert degrees, minutes and seconds to decimal degrees
 * `decimal2deg`: convert decimal degrees to degrees, minutes and seconds
 
-#### Create repository and document used packages
-* `createrepo`: initialize a git repository and fill it with default files (module, test, readme, etc.)
-* `docversion`: write dependency report to a given file or to command prompt
-
 #### Basic functions used in meteorology
 * `meteo2density`: convert meteo parameters to air density
 * `rh2abs`: convert relative humidity to absolute
@@ -34,7 +34,7 @@ This repository contains various (auxiliary) functions that are not part of othe
 * `plotyy`: plot data with 2 Y axes (comparable to Matlab [plotyy](https://www.mathworks.com/help/matlab/ref/plotyy.html) function)
 
 #### Function exploiting R libraries
-* `shpRpolygon`: read SHP polygon exploiting R/raster/shapefile function 
+* `shpRpolygon`: read SHP polygon exploiting R/raster/shapefile function
 
 #### Various/other functions
 * `cut2equal`: cut two pairs of x & y vectors to equal x vector
@@ -42,3 +42,8 @@ This repository contains various (auxiliary) functions that are not part of othe
 * `getWUdata`: download [WUnderground](wunderground.com/history/) historical weather data
 * `spectralAnalysis`: carry out simple spectral analysis
 * `sub2df`: convert SubDataFrame to DataFrame
+
+## Usage
+* Check the function help for instructions and example usage, e.g., `?elip2xyz`
+
+> Check the `REQUIRE` file for dependencies

@@ -1,7 +1,3 @@
-## Set of functions related to geodetic computations on ellipsoid and spere
-# Constants: geodetic
-const a_elip = 6378137.; # WGS84 ellipsoid major axis (m)
-const b_elip = 6356752.314245; # WGS84 ellipsoid minor axis (m)
 """
 	lonlat2psi(lon1,lat1,lon2,lat2;a,b)
 Compute spherical distance between points on ellipsoid
