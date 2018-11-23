@@ -10,8 +10,8 @@ The procedure follows the FAO Irrigation and drainage paper 56,
 instructions at: http://www.fao.org/docrep/X0490E/x0490e0l.htm
 
 **Input**
-* data1: first data vector 
-* data2: second data vector 
+* data1: first data vector
+* data2: second data vector
 * time1: optional time vector corresponding to data1, if data1 and data2 do not overlap
 * time2: optional time vector corresponding to data2, if data1 and data2 do not overlap
 * fig_size: output figure size (default=(13,8))
@@ -31,7 +31,7 @@ function homogendatatest(data1,data2;time1=[],time2=[],
                         fig_size=(13,8));
     # set default values
     if length(time1) == 0 || length(time2) == 0
-        time1,time2 = collect(0:1:length(data1)),collect(0:1:length(data2));
+        time1,time2 = collect(1:1:length(data1)),collect(1:1:length(data2));
     end
     # Prepare data
     timeuse,data1use,data2use = MMpkg.cut2equal(time1,data1,time2,data2,remnan=true);
@@ -69,7 +69,7 @@ function homogendatatest_reg(data1,data2)
     # Regression analysis
     b = covxy/x_std^2;
     a = y_mean - b.*x_mean;
-    y_surr = a + b*data2;
+    y_surr = a .+ b*data2;
     PyPlot.plot(data2,data1,"k.",data2,y_surr,"r-");
     PyPlot.legend(["input data","regression"]);
     PyPlot.ylabel("data1");#PyPlot.xlabel("data2");
@@ -87,8 +87,8 @@ function homogendatatest_ellipse(data1,data2,resid)
     # utilized". zp is standard normal variate for selected probabilities P.
     p_val,zp = [80 85 90 95],[0.84 1.04 1.28 1.64]; # !!change zp if p_val modified!!
     n = length(data2);
-    α = repmat([n/2],length(p_val));
-    ψ = linspace(0.,2*pi,120);
+    α = repeat([n/2],length(p_val));
+    ψ = range(0.,stop=2*pi,length=120);
     PyPlot.plot(cumsum(resid),"r-");
     stdres = std(resid);
 	plotline = ["k-","b--","b-","k--"];
@@ -96,12 +96,12 @@ function homogendatatest_ellipse(data1,data2,resid)
     for i in 1:length(p_val)
         β = n/sqrt(n-1)*zp[i]*stdres;
         # Compute coordinates of probability ellipsis
-        X = α[i]*cos.(ψ);
-        Y = β*sin.(ψ);
+        X = α[i].*cos.(ψ);
+        Y = β.*sin.(ψ);
         if mod(i,2) == 1
-            PyPlot.plot(X+X[i],Y,plotline[i],LineWidth=2)
+            PyPlot.plot(X.+X[i],Y,plotline[i],LineWidth=2)
         else
-            PyPlot.plot(X+X[i],Y,plotline[i],LineWidth=0.5)
+            PyPlot.plot(X.+X[i],Y,plotline[i],LineWidth=0.5)
         end
         push!(out_leg,@sprintf("P at %d%%",p_val[i]));
     end
@@ -114,8 +114,8 @@ auxiliary function to compute double-mass technique
 function homogendatatest_doublemass(data1,data2)
     x_cum = cumsum(data2);
     y_cum = cumsum(data1);
-    b2 = sum((x_cum-mean(x_cum)).*(y_cum-mean(y_cum)))/sum((x_cum-mean(x_cum)).^2);
-    y2_surr = x_cum*b2;
+    b2 = sum((x_cum.-mean(x_cum)).*(y_cum.-mean(y_cum)))/sum((x_cum.-mean(x_cum)).^2);
+    y2_surr = x_cum.*b2;
     y2_res = y_cum - y2_surr;
     return y2_surr,y2_res
 end
