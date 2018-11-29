@@ -11,6 +11,10 @@ using MMpkg
     # satwatpres: https://en.wikipedia.org/wiki/Vapour_pressure_of_water
     @test round(satwatpres(20+273.15)/10) == 234
 
+    # deg2kel
+    @test MMpkg.deg2kel(20.0) == 293.15
+    @test MMpkg.kel2deg(263.15) == -10.0
+
     # meteo2density. Approximation: http://www.thefullwiki.org/Density_of_air
     # Humid air: https://www.brisbanehotairballooning.com.au/calculate-air-density/
     @test round(meteo2density(100000.,273.15+20.,35.)*1e+4) == 11847
@@ -122,4 +126,19 @@ using MMpkg
     b2 = sub2df(a,b[2])
     @test b2[:c] == [2,2,2];
     @test b2[:y] == [4.0,5.0,6.0]
+
+    ph = MMpkg.sm2ph(0.388,0.4232,0.0768,0.0113,1.4542)
+    @test round(ph,digits=1) == -47.9
+
+    ph = MMpkg.sm2ph(0.43,0.4232,0.0768,0.0113,1.4542)
+    @test isnan(ph)
+
+    ## Data test
+    x,y = MMpkg.homogendatatest_doublemass([1.0,2.0,3.0],[10.0,20.0,30.0])
+    @test x == cumsum([1.0,2.0,3.0])
+    @test sum(y) ≈ 0.0
+
+    ## Rfces
+    @test MMpkg.id2int(0,"1") == 1
+    @test MMpkg.id2int(0,"bla") == -1
 end

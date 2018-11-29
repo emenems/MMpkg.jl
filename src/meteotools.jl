@@ -193,3 +193,35 @@ end
 function geopot2height(phis::Float32;g=g_const)
 	return geopot2height(convert(Float64,phis),g=g)
 end
+
+
+"""
+	sm2ph(θh,θs,θr,α,n)
+Convert soil moisture to pressure head using van Genuchten parameters
+Conversion equation: 2.29 Hydrus-1D User Manual page 58/343
+
+**Input**
+* `θh`: soil moisture to be converted (in m^3/m^3)
+* `θs`: saturated water contents (soil moisture in m^3/m^3)
+* `θr`: residual water contents (soil moisture in m^3/m^3)
+* `α`: the inverse of the air-entry value (in desired input length units)
+* `n`: pore-size distribution index
+
+**Output**
+* negative pressure head in units given by `alpha` (assuming θh < θs)
+
+**Example**
+```
+ph = sm2ph(0.388,0.4232,0.0768,0.0113,1.4542)
+@test round(ph,digits=1) == -47.9
+```
+"""
+function sm2ph(θh::Float64,θs::Float64,θr::Float64,α::Float64,n::Float64)::Float64
+	nrth(x,p) = x^(1/p);
+	m = 1 - 1/n;
+	if θh < θs
+		return -nrth(nrth((θs - θr)/(θh - θr),m)-1,n)/α
+	else
+		return NaN
+	end
+end

@@ -8,7 +8,7 @@ This repository contains various (auxiliary) functions that are not part of othe
 
 ### Dependency
 * R/raster library is required in `rfces.jl`.
-  * this requires libraries such as `gdal` & `netcdf` (not tested in build!) 
+  * this requires libraries such as `gdal` & `netcdf` (not tested in build!)
 
 ## Functions
 
@@ -20,7 +20,7 @@ This repository contains various (auxiliary) functions that are not part of othe
 * `deg2decimal`: convert degrees, minutes and seconds to decimal degrees
 * `decimal2deg`: convert decimal degrees to degrees, minutes and seconds
 
-#### Basic functions used in meteorology
+#### Basic functions used in meteorology and hydrology
 * `meteo2density`: convert meteo parameters to air density
 * `rh2abs`: convert relative humidity to absolute
 * `rh2dew`: convert relative humidity to dew point
@@ -29,6 +29,7 @@ This repository contains various (auxiliary) functions that are not part of othe
 * `sh2rh`: convert specific humidity to relative humidity
 * `satwatpres`: compute saturation water vapor pressure (over water)
 * `geopot2height`: convert geopotential to altitude
+* `MMpkg.sm2ph`: convert soil moisture to pressure head (using van Genuchten parameters)
 
 #### Plot
 * `plotyy`: plot data with 2 Y axes (comparable to Matlab [plotyy](https://www.mathworks.com/help/matlab/ref/plotyy.html) function)
